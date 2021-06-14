@@ -3,11 +3,9 @@ package servlets;
 import javax.servlet.GenericServlet;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-//@WebServlet("/hello")
 public class HelloWorldServlet extends GenericServlet {
 
     @Override
