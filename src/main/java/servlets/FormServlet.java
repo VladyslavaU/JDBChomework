@@ -11,7 +11,6 @@ import java.io.PrintWriter;
 public class FormServlet extends GenericServlet {
 
     public void service(ServletRequest request, ServletResponse response) throws IOException {
-
         if (request.getParameter("firstName") != null && request.getParameter("lastName") != null &&
                 request.getParameter("age") != null) {
             String firstName = request.getParameter("firstName");
