@@ -7,7 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/enterInfo")
+//@WebServlet("/enterInfo")
 public class FormServlet extends GenericServlet {
 
     public void service(ServletRequest request, ServletResponse response) throws IOException {
