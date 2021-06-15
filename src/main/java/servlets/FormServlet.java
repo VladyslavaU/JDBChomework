@@ -3,16 +3,12 @@ package servlets;
 import javax.servlet.GenericServlet;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-//@WebServlet(name = "form", urlPatterns = ("/form"))
 public class FormServlet extends GenericServlet {
 
+    @Override
     public void service(ServletRequest request, ServletResponse response) throws IOException {
         if (request.getParameter("firstName") != null && request.getParameter("lastName") != null &&
                 request.getParameter("age") != null) {
