@@ -14,14 +14,22 @@ import java.sql.Statement;
 @WebServlet("/addServlet")
 public class CreateUserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private Connection connection;
+    private static Connection connection;
+
+    static {
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root", "123123");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 
     public void init() {
         try {
             System.out.println("init()");
-            Class.forName("lib.com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root", "123123");
-        } catch (SQLException | ClassNotFoundException e) {
+            Class.forName("com.mysql.jdbc.Driver");
+         //   connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root", "123123");
+        } catch ( ClassNotFoundException e) {
             e.printStackTrace();
         }
 
