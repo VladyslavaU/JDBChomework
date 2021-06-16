@@ -7,7 +7,10 @@ public class UserDAO {
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "123123");
              Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery("select * from user")
+
         ) {
+            Connection connection2 = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root", "123123");
+            Statement statement1 = connection2.createStatement();
             // int userOne = statement.executeUpdate("insert into user values('John', 'Smith', 30)");
             // int userTwo = statement.executeUpdate("insert into user values('Mary', 'Brown', 30)");
             // int userThree = statement.executeUpdate("insert into user values('James', 'Bond', 30)");

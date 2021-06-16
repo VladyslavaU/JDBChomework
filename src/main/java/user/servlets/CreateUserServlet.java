@@ -1,6 +1,5 @@
 package user.servlets;
 
-import java.sql.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -12,24 +11,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 @WebServlet("/addServlet")
+
 public class CreateUserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static Connection connection;
-
-    static {
-        try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root", "123123");
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }
+    private Connection connection;
 
     public void init() {
+        System.out.println("init()");
         try {
-            System.out.println("init()");
             Class.forName("com.mysql.jdbc.Driver");
-         //   connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root", "123123");
-        } catch ( ClassNotFoundException e) {
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root", "123123");
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 
@@ -43,18 +35,18 @@ public class CreateUserServlet extends HttpServlet {
         String lastName = request.getParameter("lastName");
         String age = request.getParameter("age");
         String email = request.getParameter("email");
+
         try {
+            Class.forName("com.mysql.jdbc.Driver");
             Statement statement = connection.createStatement();
             int result = statement.executeUpdate("insert into user values('" + firstName + "','" + lastName + "','" + age + "','" + email + "')");
-            response.setContentType("text/html");
             PrintWriter out = response.getWriter();
-
             if (result > 0) {
                 out.print("<H1>User Created</H1>");
             } else {
                 out.print("<H1>Error Creating the User</H1>");
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
