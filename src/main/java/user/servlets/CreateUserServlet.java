@@ -5,10 +5,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 @WebServlet("/addServlet")
 
@@ -20,7 +17,7 @@ public class CreateUserServlet extends HttpServlet {
         try {
             System.out.println("init()");
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root", "123123");
+            this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root", "123123");
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -39,25 +36,36 @@ public class CreateUserServlet extends HttpServlet {
         String lastName = request.getParameter("lastName");
         String age = request.getParameter("age");
         String email = request.getParameter("email");
-        try {
-            Statement statement = connection.createStatement();
+        String sql = "INSERT INTO warehouses(name,capacity) VALUES(?,?)";
+
+        try (Connection conn = this.connection;
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, firstName);
+            pstmt.setString(2, lastName);
+            pstmt.setString(3,age);
+            pstmt.setString(4,email);
+            pstmt.executeUpdate();
+      //  try {
+         //   Statement statement = connection.createStatement();
             //int result = statement.executeUpdate("insert into user values('" + firstName + "','" + lastName + "','" + age + "','" + email + "')");
-            int result = statement.executeUpdate("insert into user values('firstName', 'lastName','age', 'email')");
+         //   int result = statement.executeUpdate("insert into user values('firstName', 'lastName','age', 'email')");
             PrintWriter out = response.getWriter();
-            if (result > 0) {
+           // if (result > 0) {
                 out.print("<H1>User Created</H1>");
-            } else {
-                out.print("<H1>Error Creating the User</H1>");
-            }
+         //   } else {
+            //    out.print("<H1>Error Creating the User</H1>");
+       //     }
         } catch (SQLException e) {
-            e.printStackTrace();
+     //       e.printStackTrace();
         }
-    }
+   // } catch (SQLException throwables) {
+    //        throwables.printStackTrace();
+        }
 
 
-    public void destroy() {
+        public void destroy() {
         try {
-            connection.close();
+            this.connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
