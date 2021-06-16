@@ -25,7 +25,8 @@ public class CreateUserServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("addUser.html").forward(request,response);
     }
 
 
@@ -36,7 +37,7 @@ public class CreateUserServlet extends HttpServlet {
         String lastName = request.getParameter("lastName");
         int age = Integer.parseInt(request.getParameter("age"));
         String email = request.getParameter("email");
-        String sql = "INSERT INTO user(firstName,lastName, age, email) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO user(first_name,last_name, age, email) VALUES(?,?,?,?)";
 
         try (Connection conn = this.connection;
              PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
