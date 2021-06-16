@@ -33,6 +33,7 @@ public class UpdateUserServlet extends HttpServlet {
         String email = request.getParameter("email");
 
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
             Statement statement = connection.createStatement();
             int result = statement.executeUpdate("update user set age='"+age+"' where email='"+email+"'");
             PrintWriter out = response.getWriter();
@@ -41,7 +42,7 @@ public class UpdateUserServlet extends HttpServlet {
             } else {
                 out.print("<H1>Error Updating the Age</H1>");
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
