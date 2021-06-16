@@ -17,8 +17,8 @@ public class CreateUserServlet extends HttpServlet {
     private Connection connection;
 
     public void init() {
-        System.out.println("init()");
         try {
+            System.out.println("init()");
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root", "123123");
         } catch (SQLException | ClassNotFoundException e) {
@@ -38,6 +38,8 @@ public class CreateUserServlet extends HttpServlet {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
+            PrintWriter r = response.getWriter();
+            r.print("class");
             Statement statement = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root", "123123").createStatement();
             int result = statement.executeUpdate("insert into user values('" + firstName + "','" + lastName + "','" + age + "','" + email + "')");
             PrintWriter out = response.getWriter();
