@@ -1,5 +1,5 @@
 package user.servlets;
-
+import java.sql.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -35,8 +35,6 @@ public class CreateUserServlet extends HttpServlet {
         String lastName = request.getParameter("lastName");
         String age = request.getParameter("age");
         String email = request.getParameter("email");
-
-
         try {
             Statement statement = connection.createStatement();
             int result = statement.executeUpdate("insert into user values('" + firstName + "','" + lastName + "','" + age + "','" + email + "')");
