@@ -42,30 +42,28 @@ public class CreateUserServlet extends HttpServlet {
              PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             pstmt.setString(1, firstName);
             pstmt.setString(2, lastName);
-            pstmt.setInt(3,age);
-            pstmt.setString(4,email);
+            pstmt.setInt(3, age);
+            pstmt.setString(4, email);
             pstmt.executeUpdate();
 
 
-      //  try {
-         //   Statement statement = connection.createStatement();
+            //  try {
+            //   Statement statement = connection.createStatement();
             //int result = statement.executeUpdate("insert into user values('" + firstName + "','" + lastName + "','" + age + "','" + email + "')");
-         //   int result = statement.executeUpdate("insert into user values('firstName', 'lastName','age', 'email')");
+            //   int result = statement.executeUpdate("insert into user values('firstName', 'lastName','age', 'email')");
             PrintWriter out = response.getWriter();
-           // if (result > 0) {
-                out.print("<H1>User Created</H1>");
-         //   } else {
+            // if (result > 0) {
+            out.print("<H1>User Created</H1>");
+            //   } else {
             //    out.print("<H1>Error Creating the User</H1>");
-       //     }
+            //     }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-   // } catch (SQLException throwables) {
-    //        throwables.printStackTrace();
-        }
+    }
 
 
-        public void destroy() {
+        public void destroy(){
         try {
             this.connection.close();
         } catch (SQLException e) {
