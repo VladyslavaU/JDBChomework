@@ -39,12 +39,14 @@ public class CreateUserServlet extends HttpServlet {
         String sql = "INSERT INTO user(firstName,lastName, age, email) VALUES(?,?,?,?)";
 
         try (Connection conn = this.connection;
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             pstmt.setString(1, firstName);
             pstmt.setString(2, lastName);
             pstmt.setString(3,age);
             pstmt.setString(4,email);
             pstmt.executeUpdate();
+
+
       //  try {
          //   Statement statement = connection.createStatement();
             //int result = statement.executeUpdate("insert into user values('" + firstName + "','" + lastName + "','" + age + "','" + email + "')");
