@@ -22,7 +22,19 @@ public class UserDAO {
         catch(SQLException e){
             e.printStackTrace();
         }
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException classNotFoundException) {
+            classNotFoundException.printStackTrace();
+        }
+
+
     }
 
 
-}
+
+    }
+
+
+
+

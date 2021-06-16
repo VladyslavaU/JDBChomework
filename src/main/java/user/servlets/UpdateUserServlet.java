@@ -17,7 +17,7 @@ public class UpdateUserServlet extends HttpServlet {
 
     public void init() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root", "123123");
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
