@@ -37,7 +37,7 @@ public class CreateUserServlet extends HttpServlet {
 
         try {
             Statement statement = connection.createStatement();
-            int result = statement.executeUpdate("insert into user values('" + firstName + "', '" + lastName + "', '" + age + "','" + email + "')");
+            int result = statement.executeUpdate("insert into user values('"+firstName+"','"+lastName+"','"+age+"','"+email+"')");
             PrintWriter out = response.getWriter();
             if (result > 0) {
                 out.print("<H1>User Created</H1>");
