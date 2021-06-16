@@ -18,8 +18,8 @@ public class CreateUserServlet extends HttpServlet {
 
     public void init() {
         try {
-      //      System.out.println("init()");
-            Class.forName("com.mysql.jdbc.Driver");
+            System.out.println("init()");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root", "123123");
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -30,7 +30,7 @@ public class CreateUserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       // System.out.println("doPost()");
+        System.out.println("doPost()");
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String age = request.getParameter("age");
