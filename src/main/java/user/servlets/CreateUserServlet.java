@@ -34,7 +34,7 @@ public class CreateUserServlet extends HttpServlet {
         System.out.println("doPost()");
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
-        String age = request.getParameter("age");
+        int age = Integer.parseInt(request.getParameter("age"));
         String email = request.getParameter("email");
         String sql = "INSERT INTO user(firstName,lastName, age, email) VALUES(?,?,?,?)";
 
@@ -42,7 +42,7 @@ public class CreateUserServlet extends HttpServlet {
              PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             pstmt.setString(1, firstName);
             pstmt.setString(2, lastName);
-            pstmt.setString(3,age);
+            pstmt.setInt(3,age);
             pstmt.setString(4,email);
             pstmt.executeUpdate();
 
