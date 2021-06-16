@@ -29,7 +29,7 @@ public class CreateUserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("doPost()");
+        //System.out.println("doPost()");
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String age = request.getParameter("age");
