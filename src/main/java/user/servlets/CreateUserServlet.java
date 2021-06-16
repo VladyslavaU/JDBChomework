@@ -58,7 +58,7 @@ public class CreateUserServlet extends HttpServlet {
             //    out.print("<H1>Error Creating the User</H1>");
        //     }
         } catch (SQLException e) {
-     //       e.printStackTrace();
+            e.printStackTrace();
         }
    // } catch (SQLException throwables) {
     //        throwables.printStackTrace();
