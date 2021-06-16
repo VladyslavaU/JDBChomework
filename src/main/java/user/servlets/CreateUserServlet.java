@@ -17,7 +17,7 @@ public class CreateUserServlet extends HttpServlet {
         try {
             System.out.println("init()");
             Class.forName("com.mysql.cj.jdbc.Driver");
-            this.connection = DriverManager.getConnection("jdbc:mysql://192.168.1.125:3306/users", "root", "123123");
+            this.connection = DriverManager.getConnection("jdbc:mysql://192.168.1.127:3306/users", "root", "123123");
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
