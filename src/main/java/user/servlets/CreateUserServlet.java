@@ -45,7 +45,7 @@ public class CreateUserServlet extends HttpServlet {
             } else {
                 out.print("<H1>Error Creating the User</H1>");
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
