@@ -1,4 +1,5 @@
 package user.servlets;
+
 import java.sql.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -50,11 +51,11 @@ public class CreateUserServlet extends HttpServlet {
         }
     }
 
-   // public void destroy() {
-   //     try {
-    //        connection.close();
-    //    } catch (SQLException e) {
-   //         e.printStackTrace();
-   //     }
-   // }
+    public void destroy() {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
