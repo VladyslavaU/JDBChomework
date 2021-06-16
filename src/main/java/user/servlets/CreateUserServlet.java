@@ -36,7 +36,7 @@ public class CreateUserServlet extends HttpServlet {
         String lastName = request.getParameter("lastName");
         String age = request.getParameter("age");
         String email = request.getParameter("email");
-        String sql = "INSERT INTO user(name,capacity) VALUES(?,?)";
+        String sql = "INSERT INTO user(firstName,lastName, age, email) VALUES(?,?,?,?)";
 
         try (Connection conn = this.connection;
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
