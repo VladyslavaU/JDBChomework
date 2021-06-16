@@ -1,2 +1,5 @@
 servlets\HelloWorldServlet.class
+UserDAO.class
+user\servlets\UpdateUserServlet.class
 servlets\FormServlet.class
+user\servlets\CreateUserServlet.class

@@ -35,12 +35,14 @@ public class CreateUserServlet extends HttpServlet {
         String lastName = request.getParameter("lastName");
         String age = request.getParameter("age");
         String email = request.getParameter("email");
-        PrintWriter out = response.getWriter();
 
 
         try {
             Statement statement = connection.createStatement();
             int result = statement.executeUpdate("insert into user values('" + firstName + "','" + lastName + "','" + age + "','" + email + "')");
+            response.setContentType("text/html");
+            PrintWriter out = response.getWriter();
+
             if (result > 0) {
                 out.print("<H1>User Created</H1>");
             } else {
