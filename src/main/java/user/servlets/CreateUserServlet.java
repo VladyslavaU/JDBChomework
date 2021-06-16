@@ -27,10 +27,13 @@ public class CreateUserServlet extends HttpServlet {
 
     }
 
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+    }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        forAndrey();
         System.out.println("doPost()");
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
@@ -50,15 +53,7 @@ public class CreateUserServlet extends HttpServlet {
         }
     }
 
-    private void forAndrey(){
-        try {
-            System.out.println("init()");
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root", "123123");
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+
     public void destroy() {
         try {
             connection.close();
