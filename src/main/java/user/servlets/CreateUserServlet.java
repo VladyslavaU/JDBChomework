@@ -18,7 +18,7 @@ public class CreateUserServlet extends HttpServlet {
 
     public void init() {
         try {
-            System.out.println("init()");
+      //      System.out.println("init()");
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root", "123123");
         } catch (SQLException | ClassNotFoundException e) {
@@ -30,17 +30,14 @@ public class CreateUserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("doPost()");
+       // System.out.println("doPost()");
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String age = request.getParameter("age");
         String email = request.getParameter("email");
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            PrintWriter r = response.getWriter();
-            r.print("class");
-            Statement statement = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root", "123123").createStatement();
+            Statement statement = connection.createStatement();
             int result = statement.executeUpdate("insert into user values('" + firstName + "','" + lastName + "','" + age + "','" + email + "')");
             PrintWriter out = response.getWriter();
             if (result > 0) {
@@ -48,7 +45,7 @@ public class CreateUserServlet extends HttpServlet {
             } else {
                 out.print("<H1>Error Creating the User</H1>");
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
