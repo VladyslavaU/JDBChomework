@@ -16,7 +16,7 @@ public class CreateUserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private Connection connection;
 
-    public void init() {
+    public void init(ServletConfig config) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://localhost/users", "root", "123123");
