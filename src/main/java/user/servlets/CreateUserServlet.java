@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 @WebServlet("/addServlet")
-
 public class CreateUserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private Connection connection;
@@ -51,11 +50,11 @@ public class CreateUserServlet extends HttpServlet {
         }
     }
 
-    public void destroy() {
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+   // public void destroy() {
+   //     try {
+    //        connection.close();
+    //    } catch (SQLException e) {
+   //         e.printStackTrace();
+   //     }
+   // }
 }
