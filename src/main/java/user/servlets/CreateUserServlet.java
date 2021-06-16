@@ -36,10 +36,7 @@ public class CreateUserServlet extends HttpServlet {
         String age = request.getParameter("age");
         String email = request.getParameter("email");
         PrintWriter out = response.getWriter();
-        out.print(firstName);
-        out.print(lastName);
-        out.print(age);
-        out.print(email);
+
         try {
             Statement statement = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root", "123123").createStatement();
             int result = statement.executeUpdate("insert into user values('" + firstName + "','" + lastName + "','" + age + "','" + email + "')");
