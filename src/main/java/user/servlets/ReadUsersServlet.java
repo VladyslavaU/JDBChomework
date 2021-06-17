@@ -2,20 +2,18 @@ package user.servlets;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
-import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
-@WebServlet("/ReadServlet")
 public class ReadUsersServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private Connection connection;
 
-    public void init(){
+    public void init(ServletConfig config){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root", "123123");
+            connection = DriverManager.getConnection(config.getInitParameter("dbUrl"), config.getInitParameter("dbUser"), config.getInitParameter("dbPassword") );
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
