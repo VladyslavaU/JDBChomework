@@ -18,12 +18,12 @@ public class CreateUserServlet extends HttpServlet {
         try{
             ServletContext context = config.getServletContext();
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(
                     context.getInitParameter("dbUrl"),
                     context.getInitParameter("dbUser"),
                     context.getInitParameter("dbPassword") );
-            statement = connection.prepareStatement("insert into user (first_name, last_name, age, email) values(?,?,?,?)");
+            statement = connection.prepareStatement("insert into person(first_name, last_name, age, email) values(?,?,?,?)");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
