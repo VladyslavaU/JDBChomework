@@ -4,7 +4,7 @@ public class UserDAO {
 
     public static void main(String[] args) {
 
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://95.67.63.220:3306/mydb", "root", "123123");
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "123123");
              Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery("select * from user")
 
