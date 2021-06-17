@@ -7,26 +7,20 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
-@WebServlet(urlPatterns = "/addServlet", initParams = {
-        @WebInitParam(name = "dbUrl", value = "jdbc:mysql://localhost:3306/users"),
-        @WebInitParam(name = "dbUser", value = "root"),
-        @WebInitParam(name = "dbPassword", value = "123123")})
+@WebServlet(urlPatterns = "/addServlet")
 
 public class CreateUserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private Connection connection;
 
-    public void init(ServletConfig config) {
-        try {
+    public void init(ServletConfig config){
+        try{
+            ServletContext context = config.getServletContext();
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(
-                    config.getInitParameter("dbUrl"),
-                    config.getInitParameter("dbUser"),
-                    config.getInitParameter("dbPassword"));
-        } catch (SQLException | ClassNotFoundException e) {
+            connection = DriverManager.getConnection(context.getInitParameter("dbUrl"), context.getInitParameter("dbUser"), context.getInitParameter("dbPassword") );
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override

@@ -12,8 +12,9 @@ public class ReadUsersServlet extends HttpServlet {
 
     public void init(ServletConfig config){
         try{
+            ServletContext context = config.getServletContext();
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(config.getInitParameter("dbUrl"), config.getInitParameter("dbUser"), config.getInitParameter("dbPassword") );
+            connection = DriverManager.getConnection(context.getInitParameter("dbUrl"), context.getInitParameter("dbUser"), context.getInitParameter("dbPassword") );
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
