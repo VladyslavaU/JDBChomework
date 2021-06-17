@@ -28,28 +28,26 @@ public class UpdateUserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("doPost()");
         String age = request.getParameter("age");
         String email = request.getParameter("email");
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
             Statement statement = connection.createStatement();
-            int result = statement.executeUpdate("update user set age='"+age+"' where email='"+email+"'");
+            int result = statement.executeUpdate("update users2 set age='"+age+"' where email='"+email+"'");
             PrintWriter out = response.getWriter();
             if (result > 0) {
                 out.print("<H1>Age Updated</H1>");
             } else {
                 out.print("<H1>Error Updating the Age</H1>");
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     public void destroy() {
         try {
-            this.connection.close();
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
