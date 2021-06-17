@@ -14,6 +14,7 @@ public class UserDAO {
             // int userOne = statement.executeUpdate("insert into user values('John', 'Smith', 30)");
             // int userTwo = statement.executeUpdate("insert into user values('Mary', 'Brown', 30)");
             // int userThree = statement.executeUpdate("insert into user values('James', 'Bond', 30)");
+            //            // int userThree = statement.executeUpdate("delete from user where name=John");
             while (rs.next()) {
                 System.out.println(rs.getString(1));
                 System.out.println(rs.getString(2));
