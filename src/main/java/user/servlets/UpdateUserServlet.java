@@ -37,15 +37,10 @@ public class UpdateUserServlet extends HttpServlet {
 
 
         try {
-            statement.setString(4,email);
-            statement.setInt(3,age);
+           // statement.setString(4,email);
+       //     statement.setInt(3,age);
             statement.executeUpdate();
-            PrintWriter out = response.getWriter();
-            if (result > 0) {
-                out.print("<H1>Age Updated</H1>");
-            } else {
-                out.print("<H1>Error Updating the Age</H1>");
-            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
